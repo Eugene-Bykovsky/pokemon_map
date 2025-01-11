@@ -1,11 +1,9 @@
 import folium
-import json
 
-from django.http import HttpResponseNotFound
 from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import localtime
 
-from pokemon_entities.models import Pokemon, PokemonEntity
+from pokemon_entities.models import Pokemon
 
 MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = (
@@ -67,6 +65,7 @@ def show_pokemon(request, pokemon_id):
         'img_url': request.build_absolute_uri(pokemon.image.url)
         if pokemon.image else None,
         'title_ru': pokemon.title,
+        'description': pokemon.description
     }
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
