@@ -36,15 +36,17 @@ class PokemonEntity(models.Model):
                                 verbose_name='Покемон')
     lat = models.FloatField(verbose_name='Широта')
     lon = models.FloatField(verbose_name='Долгота')
-    appeared_at = models.DateTimeField(null=True,
+    appeared_at = models.DateTimeField(null=True, blank=True,
                                        verbose_name='Появился в')
-    disappeared_at = models.DateTimeField(null=True,
+    disappeared_at = models.DateTimeField(null=True, blank=True,
                                           verbose_name='Исчез в')
-    level = models.IntegerField(null=True, verbose_name='Уровень')
-    health = models.IntegerField(null=True, verbose_name='Здоровье')
-    strength = models.IntegerField(null=True, verbose_name='Сила')
-    defence = models.IntegerField(null=True, verbose_name='Защита')
-    stamina = models.IntegerField(null=True, verbose_name='Выносливость')
+    level = models.IntegerField(null=True, blank=True, verbose_name='Уровень')
+    health = models.IntegerField(null=True, blank=True,
+                                 verbose_name='Здоровье')
+    strength = models.IntegerField(null=True, blank=True, verbose_name='Сила')
+    defence = models.IntegerField(null=True, blank=True, verbose_name='Защита')
+    stamina = models.IntegerField(null=True, blank=True,
+                                  verbose_name='Выносливость')
 
     class Meta:
         verbose_name = 'Экземпляр покемона'
