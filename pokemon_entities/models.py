@@ -2,12 +2,22 @@ from django.db import models  # noqa F401
 
 
 class Pokemon(models.Model):
-    title = models.CharField(max_length=200)
+    title_ru = models.CharField(max_length=200)
+    title_en = models.CharField(max_length=200, default='', blank=True)
+    title_jp = models.CharField(max_length=200, default='', blank=True)
     image = models.ImageField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    evolved_from = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='evolves_to',
+        verbose_name='Из кого эволюционировал'
+    )
 
     def __str__(self):
-        return self.title
+        return self.title_ru
 
 
 class PokemonEntity(models.Model):
